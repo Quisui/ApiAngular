@@ -25,11 +25,15 @@ const source = {
     dest: "docs/css"
   },
   js: {
-    src: ["./node_modules/angular/angular.min.js", 
+    src: 
+    [
+    "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+    "./node_modules/jquery/dist/jquery.min.js",
+    "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    "./node_modules/angular/angular.min.js",
     "./node_modules/angular-route/angular-route.min.js", 
     "./node_modules/angular-resource/angular-resource.min.js", 
-    "./node_modules/jquery/dist/jquery.min.js",
-     "./node_modules/bootstrap/dist/js/bootstrap.min.js"],
+    ],
     dest: "./pruebaApi/js/"
   }
 }
@@ -92,7 +96,7 @@ gulp.task('browserSync', function() {
     });
 });
 */
-gulp.task('default', ['serve', 'js'], function () {
+gulp.task('default', ['serve'], function () {
   //gulp.watch(source.html.src, browserSync.reload);
   gulp.watch(source.html.src, ['html']).on('change', browserSync.reload);
 });
