@@ -3,7 +3,7 @@
         <h1 class="inline-block">{{registers.nombre}}</h1><br>
         <strong>Edad: {{registers.edad}}</strong><br>
         <strong>Nacimiento: {{registers.nacimiento}}</strong>
-        <button type="button" class="btn btn-outline-danger float-right  ml-1">Eliminar</button>
+        <button type="button" class="btn btn-outline-danger float-right  ml-1" ng-click="deletData(registers.id)">Eliminar</button>
         <button type="button" class="btn btn-outline-primary float-right">Modificar</button>
     </li>
 </ul>

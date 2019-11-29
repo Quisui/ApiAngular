@@ -4,5 +4,9 @@ app.config(function ($routeProvider) {
         .when("/", {
             controller: "AppController",
             templateUrl: "templates/home.html"
+        })
+        .when("/newRegister",{
+            controller: "NewRegisterController",
+            templateUrl: "templates/register.html"
         });
 });

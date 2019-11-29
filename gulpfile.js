@@ -5,7 +5,7 @@ const cleanCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 var sass = require('gulp-sass');
-var uglify    = require('gulp-uglify');
+var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 const source = {
   styles: {
@@ -25,11 +25,14 @@ const source = {
     dest: "docs/css"
   },
   js: {
-    src: ["./node_modules/angular/angular.min.js", 
-    "./node_modules/angular-route/angular-route.min.js", 
-    "./node_modules/angular-resource/angular-resource.min.js", 
-    "./node_modules/jquery/dist/jquery.min.js",
-     "./node_modules/bootstrap/dist/js/bootstrap.min.js"],
+    src: [
+      "./node_modules/angular/angular.min.js",
+      "./node_modules/angular-route/angular-route.min.js",
+      "./node_modules/angular-resource/angular-resource.min.js",
+      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+      "./node_modules/jquery/dist/jquery.min.js",
+      "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+    ],
     dest: "./pruebaApi/js/"
   }
 }
