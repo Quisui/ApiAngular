@@ -1,7 +1,7 @@
 var app = angular.module("FinalApp");
 app.controller("AppController", function ($scope, $http, $resource) {
     $scope.registros = [];
-
+    //funcion para eliminar
     $scope.deletData = function (id) {
         var data = {
             id: id
@@ -10,6 +10,7 @@ app.controller("AppController", function ($scope, $http, $resource) {
             .then(function (response) {
                 if (response.data) {
                     $scope.msg = "DAtos eliminados exitosamente";
+                    $scope.registros = $scope.getRegistros();
                     console.log(response.data);
                 }
             })
@@ -19,6 +20,7 @@ app.controller("AppController", function ($scope, $http, $resource) {
             });
     };
 
+    //carga automatica
     $http.get("http://localhost:8085/api/")
         .then(function (request) {
             $scope.registros = request.data;
@@ -27,7 +29,7 @@ app.controller("AppController", function ($scope, $http, $resource) {
         .catch(function (request) {
             console.log(request);
         });
-
+    //funciona para servicios que no sirve
     $scope.getRegistros = function () {
         $http.get("http://localhost:8085/api/")
             .then(function (request) {
@@ -40,24 +42,68 @@ app.controller("AppController", function ($scope, $http, $resource) {
 
     }
 
-    $scope.httPost = function () {
-        $http.post("https://jsonplaceholder.typicode.com/posts", $scope.newPost[{
-            title: $scope.newPost.title,
-            body: $scope.newPost.body,
-            userId: 1
-        }])
-            .then(function (response) {
-                console.log(response);
-                $scope.todo.push($scope.newPost)
-                $scope.newPost = {};
-                console.log($scope.todo);
-            }, function (response) {
-                console.log(response);
-            });
 
-    }
 
 });
 app.controller("NewRegisterController", function ($scope, $http, $resource) {
+    //funcion para hacer post
+    $scope.todo = [];
+    /*$scope.postQuisui = function (nombre, edad, nacimiento, dpi) {
+        $scope.newRegister = {
+            'nombre': nombre,
+            'edad': edad,
+            'nacimiento': nacimiento,
+            'dpi': dpi
+        }
 
+        $scope.httPost = function () {
+            $http.http("http://localhost:8085/api/register", JSON.stringify(newRegister))
+                .then(function (response) {
+                    if (response.data) {
+                        $scope.msg = "post ingresado exitosamente";
+                        scope.todo.push($response.data.post);
+                        console.log(response.data);
+                    }
+                })
+                .catch(function (response) {
+                    console.log(response);
+                });
+
+        }
+    }*/
+
+    $scope.postQuisui = function () {
+        $scope.todo = [];
+        $http({
+            url: 'http://localhost:8085/api/register',
+            method: "post",
+            data: {
+                'nombre': $scope.nombre,
+                'edad': $scope.edad,
+                'nacimiento': $scope.nacimiento,
+                'dpi': $scope.dpi
+            }
+        })
+        
+        
+        .then(function (response) {
+            if (response.data) {
+                $scope.msg = "post ingresado exitosamente";
+                $scope.todo.push(response.data.post);
+                console.log(response.data);
+            }
+        })
+        .catch(function (response) {
+            console.log(response);
+        });
+        /*
+        .success(function (response) {
+            })
+            .error(function (response) {
+                toastr.success('Creacion de asignaciones fallo');
+            })
+            .finally(function (response) {
+                $scope.todo = response.data.posts;
+            })*/
+    }
 });
